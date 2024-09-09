@@ -1,0 +1,41 @@
+.login-options{
+    max-width: 1000px;
+    width: 80%;
+}
+
+.login-title{
+    font-family: "Noto Sans KR";
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.admin_btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--color-orange-main);
+    width: 410px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 7px auto 0;
+    cursor: pointer;
+    font-size: 15px;
+    justify-content: center;
+    border: none;
+    outline: none;
+}
+
+.baby_btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    width: 410px;
+    height: 40px;
+    border: 2px solid var(--color-orange-main);
+    border-radius: 5px;
+    margin: 7px auto 0;
+    cursor: pointer;
+    font-size: 15px;
+    justify-content: center;
+}

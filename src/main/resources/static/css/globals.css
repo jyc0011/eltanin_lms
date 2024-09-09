@@ -4,3 +4,12 @@
 @import "navbar.css";
 @import "footer.css";
 @import "login.css";
+@import "paging.css";
+
+body{
+    margin: 0px;
+}
+
+#editor{
+    height: 300px;
+}

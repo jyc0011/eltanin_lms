@@ -64,4 +64,17 @@ public class FileService {
             throw new RuntimeException("File not found " + fileName, e);
         }
     }
+
+    public void deleteFileById(Long fileId) {
+        File file = fileRepository.findById(fileId)
+                .orElseThrow(() -> new RuntimeException("File not found"));
+
+        Path filePath = Paths.get(file.getFilePath());
+        try {
+            Files.deleteIfExists(filePath);
+            fileRepository.delete(file);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not delete file", e);
+        }
+    }
 }

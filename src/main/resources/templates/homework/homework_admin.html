@@ -8,6 +8,7 @@
         <img src="../../img/book-btn.png" alt="book_btn" class="book_btn">
         <h3 class="assignment_title" th:text="'과제 제출 - ' + ${homework.title}"></h3>
     </div>
+    <button class="new_homework_btn" th:onclick="|location.href='/homework/edit/' + ${homework.id}|">과제 수정하기</button>
     <div class="assignment_box">
         <div class="assignment_txt_div">
             <div class="title">
@@ -25,28 +26,19 @@
             </div>
         </div>
         <div class="assignment_sub_div">
-            <p class="assignment_subtitle">과제 제출하기</p>
+            <p class="assignment_subtitle">제출된 파일</p>
             <div id="fileContainer">
-                <div th:each="homework : ${submittedFiles}" class="file_box">
-                    <div th:each="file : ${homework.files}" >
-                        <a th:href="'/download/' + ${file.id}" th:text="'파일: ' + ${file.fileName}" class="file_name">다운로드</a>
+                <div th:each="entry : ${submittedFilesGroupedByUser}">
+                    <div class="file_group">
+                        <p class="user_name" th:text="'제출자: ' + ${entry.key.name}">제출자 이름</p>
+                        <div th:each="userHomework : ${entry.value}" class="file_box">
+                            <a th:text="'파일: ' + ${userHomework.files[0].fileName}" th:href="'/files/' + ${userHomework.files[0].id}" class="file_name">다운로드</a>
+                        </div>
                     </div>
-                    <div>
+                </div>
+            </div>
+        </div>
 
-                    </div>
-                </div>
-                <div class="file_box">
-                    <p class="file_name">과제 파일을 제출할 수 있습니다.</p>
-                </div>
-            </div>
-        </div>
-        <div class="file_add_div">
-            <img src="../../img/file-clip.png" alt="file_clip" class="file_clip">
-            <div class="file_add_div">
-                <input type="file" id="fileInput">
-                <button th:attr="onclick='uploadFile(' + ${homework.id} + ')'">파일 추가하기</button>
-            </div>
-        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>

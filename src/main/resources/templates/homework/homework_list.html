@@ -1,71 +1,41 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: header}">
-</head>
+<head th:replace="~{fragments/header :: header}"></head>
 <body>
-    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
-    <div class="all">
-        <div>
-            <div class="homework_title_box">
-                과제부여하기
-            </div>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+<div class="all">
+    <div>
+        <div class="homework_title_box">
+            과제 목록
         </div>
-        <div>
-            <div class="homework_list">
-                <img src="../../image/book-btn.png" class="homework_list_img">
-                <div class="homework_list_name">
-                    과제 목록
-                </div>
-            </div>
+        <div th:if="${session.is_admin}">
+            <button class="new_homework_btn" onclick="location.href='/homework/new'">새 과제 내기</button>
         </div>
-        <div class="homework_content">
-            <div class="homework_content_box">
-                <div class="homework_content_box_1">
-                    [과제 : 깃]
-                </div>
-                <div class="homework_content_box_2">
-                    repository 생성과 push
-                </div>
-                <div class="homework_content_box_3">
-                    3월 27일 월요일 19시까지
-                </div>
-            </div>
-            <div class="homework_content_box">
-                <div class="homework_content_box_1">
-                    [과제 : HTML&CSS]
-                </div>
-                <div class="homework_content_box_2">
-                    12기 멋사 LMS 페이지 따라하기
-                </div>
-                <div class="homework_content_box_3">
-                    4월 3일 월요일 19시까지
-                </div>
-            </div>
-            <div class="homework_content_box">
-                <div class="homework_content_box_1">
-                    [과제 : JS]
-                </div>
-                <div class="homework_content_box_2">
-                    반응형 웹페이지 만들어보기
-                </div>
-                <div class="homework_content_box_3">
-                    3월 27일 월요일 19시까지
-                </div>
-            </div>
-            <div class="homework_content_box">
-                <div class="homework_content_box_1">
-                    [과제 : Java]
-                </div>
-                <div class="homework_content_box_2">
-                    클래스 속성 이용해서 은행계좌 만들기
-                </div>
-                <div class="homework_content_box_3">
-                    3월 27일 월요일 19시까지
-                </div>
-            </div>
-        </div>
-
     </div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <div class="sort_buttons">
+        <button class="sort_btn" onclick="sortBy('createdDate')">등록 시간순 정렬</button>
+        <button class="sort_btn" onclick="sortBy('dueDate')">마감 시간순 정렬</button>
+    </div>
+    <div class="homework_content" th:each="homework : ${homeworkList}">
+        <a th:href="@{/homework/{id}(id=${homework.id})}" class="homework_list_link">
+            <div class="homework_content_box">
+                <div class="homework_content_box_1">
+                    [과제 : <span th:text="${homework.cate}">과제 유형</span>]
+                </div>
+                <div class="homework_content_box_2" th:text="${homework.title}">
+                    과제 제목
+                </div>
+                <div class="homework_content_box_3">
+                    마감 시간: <span th:text="${#temporals.format(homework.dueDate, 'yyyy-MM-dd HH:mm')}"></span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div th:replace="~{fragments/paging :: paging}"></div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="/js/sort.js"></script>
 </body>
 </html>

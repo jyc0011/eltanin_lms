@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+<div class="all">
+    <div class="login-options">
+        <div class="login-title">로그인</div>
+        <button class="admin_btn" onclick="location.href='/login/admin'">
+            운영진 로그인
+        </button>
+
+        <button class="baby_btn" onclick="location.href='/login/baby'">
+            아기 사자 로그인
+        </button>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

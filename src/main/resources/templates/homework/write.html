@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+<div class="all">
+    <div class="assignment_title_div">
+        <img src="../../img/book-btn.png" alt="book_btn" class="book_btn">
+        <h3 class="assignment_title" th:text="${homework != null} ? '과제 수정하기' : '과제 부여하기'">과제 부여하기</h3>
+    </div>
+
+    <div class="assignment_box">
+        <div class="assignment_txt_div">
+            <div class="cate">
+                <label for="assignment_cate">과제 유형:</label>
+                <input type="text" id="assignment_cate" class="assignment_input"
+                       th:value="${homework?.cate}" placeholder="과제 유형을 입력하세요">
+            </div>
+            <div class="title">
+                <label for="assignment_title">과제 제목:</label>
+                <input type="text" id="assignment_title" class="assignment_input"
+                       th:value="${homework?.title}" placeholder="과제 제목을 입력하세요">
+            </div>
+            <div>
+                <label>과제 설명:</label>
+                <textarea id="assignment_description" class="assignment_input" rows="5"
+                          placeholder="과제 설명을 입력하세요" th:text="${homework?.description}"></textarea>
+            </div>
+            <div class="line">
+                <label for="assignment_due_date">마감 날짜:</label>
+                <input type="date" id="assignment_due_date" class="assignment_input"
+                       th:value="${#temporals.format(homework?.dueDate, 'yyyy-MM-dd')}">
+            </div>
+            <div class="line">
+                <label for="assignment_due_time">마감 시간:</label>
+                <input type="time" id="assignment_due_time" class="assignment_input"
+                       th:value="${homework?.dueTime}">
+            </div>
+        </div>
+        <div class="assignment_sub_div">
+            <button class="submit_btn" th:text="${homework != null} ? '과제 수정하기' : '과제 부여하기'"
+                    onclick="submitAssignment()">과제 부여하기</button>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="../../js/assignSubmit.js"></script>
+</body>
+</html>

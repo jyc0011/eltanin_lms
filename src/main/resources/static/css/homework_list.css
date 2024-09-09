@@ -23,6 +23,11 @@
     align-items: center;
 }
 
+.homework_list_link{
+    text-decoration: none;
+    color: inherit;
+}
+
 .homework_list_img{
     width: 35px;
     height: 35px;
@@ -36,13 +41,12 @@
     font-weight: bold;
 }
 
-
 .homework_content_box{
     width: 620px;
     height: 100px;
     border-radius: 8px;
     border: 1px solid #d9d9d9;
-    margin: 50px 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -59,6 +63,10 @@
     font-family: "Noto Sans KR";
     font-weight: bold;
     font-size: 15px;
+    max-width: 230px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .homework_content_box_3{

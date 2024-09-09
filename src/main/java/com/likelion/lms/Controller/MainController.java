@@ -15,13 +15,4 @@ public class MainController {
     @GetMapping("/main")
     public String credit() { return "home/12th_credit";}
 
-    @GetMapping("/list")
-    public String homework_list() { return "homework/homework";}
-
-    @GetMapping("/homework/{id}")
-    public String homework_detail() { return "homework/homework_list";}
-
-    @GetMapping("/error")
-    public String error_page() { return "home/404";}
-
 }

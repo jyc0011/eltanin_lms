@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="" xmlns:th="http://www.thymeleaf.org">
+<div class="pagination" th:fragment="paging">
+    <ul>
+        <li th:if="${currentPage > 1}">
+            <button class="last-btn" style="border: none;"
+                    th:attr="onclick=|location.href='/list/' + (${currentPage - 1}) + '?sortBy=' + '${sortBy}'|">이전</button>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence((currentPage > 3 ? currentPage - 2 : 1), (currentPage + 2 < totalPages ? currentPage + 2 : totalPages))}">
+            <button th:classappend="${i == currentPage} ? 'active'"
+                    th:attr="onclick=|location.href='/list/' + (${i}) + '?sortBy=' + '${sortBy}'|"
+                    th:text="${i}">1</button>
+        </li>
+
+        <li th:if="${currentPage < totalPages}">
+            <button class="next-btn" style="border: none;"
+                    th:attr="onclick=|location.href='/list/' + (${currentPage + 1}) + '?sortBy=' + '${sortBy}'|">다음</button>
+        </li>
+    </ul>
+</div>
+</html>
