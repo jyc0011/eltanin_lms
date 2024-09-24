@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
-
+    // 단순한 Get mapping
     @GetMapping("/")
     public String home() { return "user/login";}
 
