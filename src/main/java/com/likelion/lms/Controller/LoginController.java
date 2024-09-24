@@ -10,6 +10,7 @@ public class LoginController {
     // 운영진 로그인 (예시)
     @GetMapping("/login/admin")
     public String adminLogin(HttpSession session) {
+        // 아이디와 권한상태를 세션에 저장하여 앞으로도 로그인 정보를 확인할 때 이용하게 할 것
         long userId = 1;
         boolean isAdmin = true;
 
@@ -17,6 +18,7 @@ public class LoginController {
         session.setAttribute("id", userId);
         session.setAttribute("is_admin", isAdmin);
 
+        // 로그인 작업이 모두 수행되었으니, 게시판 1페이지로 리다이렉트
         return "redirect:/list/1";
     }
 
